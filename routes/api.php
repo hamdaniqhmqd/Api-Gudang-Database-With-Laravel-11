@@ -24,6 +24,7 @@ Route::get('/admin/{id}', [AdminController::class, 'show']);
 Route::post('/admin', [AdminController::class, 'store']);
 Route::put('/admin/{id}', [AdminController::class, 'update']);
 Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
+Route::post('login', [AdminController::class, 'login']);
 
 // Barang
 Route::get('/barang', [BarangController::class, 'index']);
