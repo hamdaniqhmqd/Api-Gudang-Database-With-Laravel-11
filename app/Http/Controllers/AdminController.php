@@ -122,4 +122,32 @@ class AdminController extends Controller
 
         return new GudangResource(true, 'Data Admin Berhasil Dihapus!', $admin);
     }
+
+    public function login(Request $request)
+    {
+        // Validasi input
+        $validated = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Cari user berdasarkan username
+        $user = Admin::where('username', $validated['username'])->first();
+
+        // Cek apakah user ditemukan dan password cocok
+        if ($user && $validated['password'] == $user->password) {
+            // Jika berhasil login, return data user (misalnya adminName dan profileImagePath)
+            return response()->json([
+                'message' => 'Login successful',
+                'adminName' => $user->adminName,
+                'profileImagePath' => $user->profileImagePath,
+            ]);
+        }
+
+
+        // Jika login gagal
+        return response()->json([
+            'message' => 'Invalid username or password',
+        ], 401);
+    }
 }
