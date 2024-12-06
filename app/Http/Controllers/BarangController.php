@@ -118,4 +118,21 @@ class BarangController extends Controller
 
         return new GudangResource(true, 'Data Barang Berhasil Dihapus!', $barang);
     }
+
+    // Fungsi untuk mendapatkan barang berdasarkan supplier_id
+    public function getBarangBySupplier($supplierId)
+    {
+        // Query menggunakan Eloquent
+        $barang = Barang::where('supplier_id', $supplierId)
+            ->orderBy('supplier_id', 'asc')
+            ->get();
+
+        // Periksa apakah data barang ditemukan
+        if ($barang->isEmpty()) {
+            return new GudangResource(false, 'Tidak ada barang untuk supplier ini.', []);
+        }
+
+        // Kembalikan data dalam bentuk JSON dengan list barang
+        return new GudangResource(true, 'Data Barang Berhasil Ditemukan!', $barang);
+    }
 }

@@ -24,7 +24,7 @@ Route::get('/admin/{id}', [AdminController::class, 'show']);
 Route::post('/admin', [AdminController::class, 'store']);
 Route::put('/admin/{id}', [AdminController::class, 'update']);
 Route::delete('/admin/{id}', [AdminController::class, 'destroy']);
-Route::post('login', [AdminController::class, 'login']);
+Route::post('/login', [AdminController::class, 'login']);
 
 // Barang
 Route::get('/barang', [BarangController::class, 'index']);
@@ -32,6 +32,7 @@ Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
 Route::put('/barang/{id}', [BarangController::class, 'update']);
 Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
+Route::get('/barang/supplier/{supplierId}', [BarangController::class, 'getBarangBySupplier']);
 
 // Supplier
 Route::get('/supplier', [SupplierController::class, 'index']);
