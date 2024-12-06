@@ -24,7 +24,9 @@ Proyek ini merupakan backend berbasis Laravel 11 untuk mengelola data gudang. AP
 
 ## Endpoint API
 
-Daftar Endpoint yang isa di gunakan.
+Daftar endpoint yang dapat digunakan dalam aplikasi ini:
+
+---
 
 ### **1. Transaksi**
 
@@ -47,18 +49,20 @@ Daftar Endpoint yang isa di gunakan.
 | `POST`     | `/api/admin`      | Menambahkan data admin baru.             |
 | `PUT`      | `/api/admin/{id}` | Mengupdate data admin berdasarkan ID.    |
 | `DELETE`   | `/api/admin/{id}` | Menghapus data admin berdasarkan ID.     |
+| `POST`     | `/api/login`      | Autentikasi admin untuk masuk ke sistem. |
 
 ---
 
 ### **3. Barang**
 
-| **Method** | **Endpoint**       | **Deskripsi**                             |
-| ---------- | ------------------ | ----------------------------------------- |
-| `GET`      | `/api/barang`      | Menampilkan daftar semua barang.          |
-| `GET`      | `/api/barang/{id}` | Menampilkan detail barang berdasarkan ID. |
-| `POST`     | `/api/barang`      | Menambahkan data barang baru.             |
-| `PUT`      | `/api/barang/{id}` | Mengupdate data barang berdasarkan ID.    |
-| `DELETE`   | `/api/barang/{id}` | Menghapus data barang berdasarkan ID.     |
+| **Method** | **Endpoint**                        | **Deskripsi**                                      |
+| ---------- | ----------------------------------- | -------------------------------------------------- |
+| `GET`      | `/api/barang`                       | Menampilkan daftar semua barang.                   |
+| `GET`      | `/api/barang/{id}`                  | Menampilkan detail barang berdasarkan ID.          |
+| `POST`     | `/api/barang`                       | Menambahkan data barang baru.                      |
+| `PUT`      | `/api/barang/{id}`                  | Mengupdate data barang berdasarkan ID.             |
+| `DELETE`   | `/api/barang/{id}`                  | Menghapus data barang berdasarkan ID.              |
+| `GET`      | `/api/barang/supplier/{supplierId}` | Menampilkan daftar barang berdasarkan ID supplier. |
 
 ---
 
