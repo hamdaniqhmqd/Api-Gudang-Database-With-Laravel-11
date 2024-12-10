@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id('id_transaksi');
-            $table->unsignedBigInteger('barang_id');
-            $table->string('barang_nama');
-            $table->string('kategori_barang');
-            $table->integer('harga_barang');
-            $table->integer('stok_barang');
-            $table->string('ukuran_barang');
-            $table->integer('jumlah_barang');
-            $table->integer('total_harga_barang');
-            $table->unsignedBigInteger('user_id');
-            $table->string('usernama');
-            $table->unsignedBigInteger('supplier_id');
-            $table->string('supplier_nama');
-            $table->string('bulan');
-            $table->string('tanggal');
-            $table->string('tanggalAkhir');
-            $table->integer('status');
-            $table->integer('statusAkhir');
+            $table->unsignedBigInteger('barang_id')->nullable();
+            $table->string('barang_nama')->nullable();
+            $table->string('kategori_barang')->nullable();
+            $table->integer('harga_barang')->nullable();
+            $table->integer('stok_barang')->nullable();
+            $table->string('ukuran_barang')->nullable();
+            $table->integer('jumlah_barang')->nullable();
+            $table->integer('total_harga_barang')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('usernama')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
+            $table->string('supplier_nama')->nullable();
+            $table->string('bulan')->nullable();
+            $table->string('tanggal')->nullable();
+            $table->string('tanggalAkhir')->nullable();
+            $table->integer('status')->nullable();
+            $table->integer('statusAkhir')->nullable();
             $table->timestamps();
         });
     }

@@ -36,24 +36,25 @@ class TransaksiController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'barang_id'           => 'required|integer',
-            'barang_nama'         => 'required|string',
-            'kategori_barang'     => 'required|string',
-            'harga_barang'        => 'required|integer',
-            'stok_barang'         => 'required|integer',
-            'ukuran_barang'       => 'required|string',
-            'jumlah_barang'       => 'required|integer',
-            'total_harga_barang'  => 'required|integer',
-            'user_id'             => 'required|integer',
-            'usernama'            => 'required|string',
-            'supplier_id'         => 'required|integer',
-            'supplier_nama'       => 'required|string',
-            'bulan'               => 'required|string',
-            'tanggal'             => 'required|string',
-            'tanggalAkhir'        => 'required|string',
-            'status'              => 'required|integer',
-            'statusAkhir'         => 'required|integer',
+            'barang_id'           => 'nullable',
+            'barang_nama'         => 'nullable',
+            'kategori_barang'     => 'nullable',
+            'harga_barang'        => 'nullable',
+            'stok_barang'         => 'nullable',
+            'ukuran_barang'       => 'nullable',
+            'jumlah_barang'       => 'nullable',
+            'total_harga_barang'  => 'nullable',
+            'user_id'             => 'nullable',
+            'usernama'            => 'nullable',
+            'supplier_id'         => 'nullable',
+            'supplier_nama'       => 'nullable',
+            'bulan'               => 'nullable',
+            'tanggal'             => 'nullable',
+            'tanggalAkhir'        => 'nullable',
+            'status'              => 'nullable',
+            'statusAkhir'         => 'nullable',
         ]);
+
 
         //check if validation fails
         if ($validator->fails()) {
@@ -89,23 +90,23 @@ class TransaksiController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'barang_id'           => 'required|integer',
-            'barang_nama'         => 'required|string',
-            'kategori_barang'     => 'required|string',
-            'harga_barang'        => 'required|integer',
-            'stok_barang'         => 'required|integer',
-            'ukuran_barang'       => 'required|string',
-            'jumlah_barang'       => 'required|integer',
-            'total_harga_barang'  => 'required|integer',
-            'user_id'             => 'required|integer',
-            'usernama'            => 'required|string',
-            'supplier_id'         => 'required|integer',
-            'supplier_nama'       => 'required|string',
-            'bulan'               => 'required|string',
-            'tanggal'             => 'required|string',
-            'tanggalAkhir'        => 'required|string',
-            'status'              => 'required|integer',
-            'statusAkhir'         => 'required|integer',
+            'barang_id'           => 'nullabel',
+            'barang_nama'         => 'nullabel',
+            'kategori_barang'     => 'nullabel',
+            'harga_barang'        => 'nullabel',
+            'stok_barang'         => 'nullabel',
+            'ukuran_barang'       => 'nullabel',
+            'jumlah_barang'       => 'nullabel',
+            'total_harga_barang'  => 'nullabel',
+            'user_id'             => 'nullabel',
+            'usernama'            => 'nullabel',
+            'supplier_id'         => 'nullabel',
+            'supplier_nama'       => 'nullabel',
+            'bulan'               => 'nullabel',
+            'tanggal'             => 'nullabel',
+            'tanggalAkhir'        => 'nullabel',
+            'status'              => 'nullabel',
+            'statusAkhir'         => 'nullabel',
         ]);
 
         //check if validation fails

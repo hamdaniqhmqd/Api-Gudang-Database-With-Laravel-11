@@ -25,9 +25,9 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_supplier' => 'required|max:255',
-            'nik_supplier' => 'required|max:255',
-            'no_hp_supplier' => 'required|max:255',
+            'nama_supplier' => '',
+            'nik_supplier' => '',
+            'no_hp_supplier' => '',
         ]);
 
         if ($validator->fails()) {
@@ -74,9 +74,9 @@ class SupplierController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_supplier' => 'sometimes',
-            'nik_supplier' => 'sometimes',
-            'no_hp_supplier' => 'sometimes',
+            'nama_supplier' => '',
+            'nik_supplier' => '',
+            'no_hp_supplier' => '',
         ]);
 
         if ($validator->fails()) {

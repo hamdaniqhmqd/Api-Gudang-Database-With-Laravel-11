@@ -25,14 +25,14 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'barang_nama' => 'required|max:255',
-            'kategori_barang' => 'required|max:255',
-            'harga_barang' => 'required|integer',
-            'stok_barang' => 'required|integer',
-            'ukuran_barang' => 'required',
-            'jumlah_barang' => 'required|integer',
-            'user_id' => 'required',
-            'supplier_id' => 'required',
+            'barang_nama' => ':255',
+            'kategori_barang' => ':255',
+            'harga_barang' => '',
+            'stok_barang' => '',
+            'ukuran_barang' => '',
+            'jumlah_barang' => '',
+            'user_id' => '',
+            'supplier_id' => '',
         ]);
 
         if ($validator->fails()) {
@@ -84,14 +84,14 @@ class BarangController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'barang_nama' => 'sometimes',
-            'kategori_barang' => 'sometimes',
-            'harga_barang' => 'sometimes',
-            'stok_barang' => 'sometimes',
-            'ukuran_barang' => 'sometimes',
-            'jumlah_barang' => 'sometimes',
-            'user_id' => 'sometimes',
-            'supplier_id' => 'sometimes',
+            'barang_nama' => '',
+            'kategori_barang' => '',
+            'harga_barang' => '',
+            'stok_barang' => '',
+            'ukuran_barang' => '',
+            'jumlah_barang' => '',
+            'user_id' => '',
+            'supplier_id' => '',
         ]);
 
         if ($validator->fails()) {

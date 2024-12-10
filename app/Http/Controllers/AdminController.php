@@ -36,10 +36,10 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:admins',
-            'password' => 'required',
-            'adminName' => 'required',
-            'profileImagePath' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'username' => '',
+            'password' => '',
+            'adminName' => '',
+            'profileImagePath' => '',
         ]);
 
         if ($validator->fails()) {
@@ -72,10 +72,10 @@ class AdminController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'username' => 'sometimes',
-            'password' => 'sometimes',
-            'adminName' => 'sometimes',
-            'profileImagePath' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'username' => '',
+            'password' => '',
+            'adminName' => '',
+            'profileImagePath' => '',
         ]);
 
         if ($validator->fails()) {
