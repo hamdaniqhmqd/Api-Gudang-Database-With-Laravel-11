@@ -14,7 +14,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::get();
+        $supplier = Supplier::latest()->get();
 
         return new GudangResource(true, 'List Data Supplier', $supplier);
     }
@@ -25,9 +25,9 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_supplier' => '',
-            'nik_supplier' => '',
-            'no_hp_supplier' => '',
+            'nama_supplier' => 'required',
+            'nik_supplier' => 'required',
+            'no_hp_supplier' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -74,9 +74,9 @@ class SupplierController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama_supplier' => '',
-            'nik_supplier' => '',
-            'no_hp_supplier' => '',
+            'nama_supplier' => 'required',
+            'nik_supplier' => 'required',
+            'no_hp_supplier' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -84,9 +84,9 @@ class SupplierController extends Controller
         }
 
         $supplier->update([
-            'nama_supplier' => $request->nama_supplier ?? $supplier->username,
-            'nik_supplier' => $request->nik_supplier ? $request->nik_supplier : $supplier->nik_supplier,
-            'no_hp_supplier' => $request->no_hp_supplier ?? $supplier->no_hp_supplier,
+            'nama_supplier' => $request->nama_supplier,
+            'nik_supplier' => $request->nik_supplier,
+            'no_hp_supplier' => $request->no_hp_supplier,
         ]);
 
         return new GudangResource(true, 'Data Supplier Berhasil Diubah!', $supplier);
