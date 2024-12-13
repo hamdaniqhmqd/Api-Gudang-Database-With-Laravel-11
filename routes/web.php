@@ -13,9 +13,6 @@ Route::get('/symlink', function () {
 Route::get('/fresh_data', function () {
     Artisan::call('migrate:fresh');
 });
-Route::get('/rollback_data', function () {
-    Artisan::call('migrate:rollback');
-});
 Route::get('/migrate_data', function () {
     Artisan::call('migrate');
 });
