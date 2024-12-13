@@ -14,7 +14,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::get();
+        $barang = Barang::latest()->get();
 
         return new GudangResource(true, 'List Data Barang', $barang);
     }
@@ -25,14 +25,13 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'barang_nama' => ':255',
-            'kategori_barang' => ':255',
-            'harga_barang' => '',
-            'stok_barang' => '',
-            'ukuran_barang' => '',
-            'jumlah_barang' => '',
-            'user_id' => '',
-            'supplier_id' => '',
+            'barang_nama' => 'required',
+            'kategori_barang' => 'required',
+            'harga_barang' => 'required',
+            'stok_barang' => 'required',
+            'ukuran_barang' => 'required',
+            'jumlah_barang' => 'required',
+            'supplier_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -46,7 +45,6 @@ class BarangController extends Controller
             'stok_barang' => $request->stok_barang,
             'ukuran_barang' => $request->ukuran_barang,
             'jumlah_barang' => $request->jumlah_barang,
-            'user_id' => $request->user_id,
             'supplier_id' => $request->supplier_id,
         ]);
 
@@ -84,14 +82,13 @@ class BarangController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'barang_nama' => '',
-            'kategori_barang' => '',
-            'harga_barang' => '',
-            'stok_barang' => '',
-            'ukuran_barang' => '',
-            'jumlah_barang' => '',
-            'user_id' => '',
-            'supplier_id' => '',
+            'barang_nama' => 'required',
+            'kategori_barang' => 'required',
+            'harga_barang' => 'required',
+            'stok_barang' => 'required',
+            'ukuran_barang' => 'required',
+            'jumlah_barang' => 'required',
+            'supplier_id' => 'required',
         ]);
 
         if ($validator->fails()) {

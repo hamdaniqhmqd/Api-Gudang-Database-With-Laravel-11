@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\GudangResource;
 use App\Models\Admin;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -36,33 +37,39 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => '',
-            'password' => '',
-            'adminName' => '',
-            'profileImagePath' => '',
+            'username' => 'required',
+            'password' => 'required',
+            'adminName' => 'required',
+            'profileImagePath' => 'nullable|image',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $adminData = [
+        $image = $request->file('profileImagePath');
+        $imageName = Str::slug($request->input('username')) . '-' . time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('admin', $imageName, 'public'); // Store in 'storage/app/public/admin'
+
+        $admin = Admin::create([
             'username' => $request->username,
             'password' => $request->password,
             'adminName' => $request->adminName,
-        ];
-
-        if ($request->hasFile('profileImagePath')) {
-            $file = $request->file('profileImagePath');
-            $path = $file->store('profile-images', 'public');
-            $adminData['profileImagePath'] = $path;
-        }
-
-        $admin = Admin::create($adminData);
+            'profileImagePath' => $imageName
+        ]);
 
         return new GudangResource(true, 'Data Admin Berhasil Ditambahkan!', $admin);
     }
 
+    /*************  ✨ Codeium Command ⭐  *************/
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    /******  73cc413a-b949-49a3-a355-42d404db7c09  *******/
     public function update(Request $request, $id)
     {
         $admin = Admin::find($id);
@@ -72,34 +79,41 @@ class AdminController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'username' => '',
-            'password' => '',
-            'adminName' => '',
-            'profileImagePath' => '',
+            'username' => 'nullable',
+            'password' => 'nullable',
+            'adminName' => 'nullable',
+            'profileImagePath' => 'nullable|image',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $adminData = [
-            'username' => $request->username ?? $admin->username,
-            'password' => $request->password ? $request->password : $admin->password,
-            'adminName' => $request->adminName ?? $admin->adminName,
-        ];
-
+        // Process update
         if ($request->hasFile('profileImagePath')) {
-            // Hapus file gambar lama jika ada
+            // Delete old image if exists
             if ($admin->profileImagePath) {
                 Storage::disk('public')->delete($admin->profileImagePath);
             }
 
-            $file = $request->file('profileImagePath');
-            $path = $file->store('profile-images', 'public');
-            $adminData['profileImagePath'] = $path;
-        }
+            $image = $request->file('profileImagePath');
+            $imageName = Str::slug($request->input('username')) . '-' . time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('admin', $imageName, 'public'); // Store in 'storage/app/public/admin'
 
-        $admin->update($adminData);
+            // Update admin with new image
+            $admin->update([
+                'username' => $request->username,
+                'password' => $request->password,
+                'adminName' => $request->adminName,
+                'profileImagePath' => $imageName,
+            ]);
+        } else {
+            $admin->update([
+                'username' => $request->username,
+                'password' => $request->password,
+                'adminName' => $request->adminName,
+            ]);
+        }
 
         return new GudangResource(true, 'Data Admin Berhasil Diubah!', $admin);
     }
@@ -127,8 +141,8 @@ class AdminController extends Controller
     {
         // Validasi input
         $validated = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         // Cari user berdasarkan username
@@ -137,17 +151,13 @@ class AdminController extends Controller
         // Cek apakah user ditemukan dan password cocok
         if ($user && $validated['password'] == $user->password) {
             // Jika berhasil login, return data user (misalnya adminName dan profileImagePath)
+            return new GudangResource(true, 'Data Admin Berhasil login!', $user);
+        } else {
+            // Jika login gagal
             return response()->json([
-                'message' => 'Login successful',
-                'adminName' => $user->adminName,
-                'profileImagePath' => $user->profileImagePath,
-            ]);
+                'success' => false,
+                'message' => 'Data admin gagal Login!',
+            ], 404);
         }
-
-
-        // Jika login gagal
-        return response()->json([
-            'message' => 'Invalid username or password',
-        ], 401);
     }
 }

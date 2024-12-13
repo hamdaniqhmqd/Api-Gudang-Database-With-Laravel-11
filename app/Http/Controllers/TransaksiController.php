@@ -11,7 +11,7 @@ class TransaksiController extends Controller
 {
     public function index()
     {
-        $transaksi = Transaksi::get();
+        $transaksi = Transaksi::latest()->get();
 
         return new GudangResource(true, 'List Data Transaksi', $transaksi);
     }
@@ -36,23 +36,16 @@ class TransaksiController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'barang_id'           => 'nullable',
-            'barang_nama'         => 'nullable',
-            'kategori_barang'     => 'nullable',
-            'harga_barang'        => 'nullable',
-            'stok_barang'         => 'nullable',
-            'ukuran_barang'       => 'nullable',
-            'jumlah_barang'       => 'nullable',
-            'total_harga_barang'  => 'nullable',
-            'user_id'             => 'nullable',
-            'usernama'            => 'nullable',
-            'supplier_id'         => 'nullable',
-            'supplier_nama'       => 'nullable',
-            'bulan'               => 'nullable',
-            'tanggal'             => 'nullable',
-            'tanggalAkhir'        => 'nullable',
-            'status'              => 'nullable',
-            'statusAkhir'         => 'nullable',
+            'barang_id'           => 'required',
+            'jumlah_barang'       => 'required',
+            'total_harga_barang'  => 'required',
+            'user_id'             => 'required',
+            'supplier_id'         => 'required',
+            'bulan'               => 'required',
+            'tanggal'             => 'required',
+            'tanggalAkhir'        => 'required',
+            'status'              => 'required',
+            'statusAkhir'         => 'nullable'
         ]);
 
 
@@ -64,17 +57,10 @@ class TransaksiController extends Controller
         // Create transaction
         $transaksi = Transaksi::create([
             'barang_id'           => $request->barang_id,
-            'barang_nama'         => $request->barang_nama,
-            'kategori_barang'     => $request->kategori_barang,
-            'harga_barang'        => $request->harga_barang,
-            'stok_barang'         => $request->stok_barang,
-            'ukuran_barang'       => $request->ukuran_barang,
             'jumlah_barang'       => $request->jumlah_barang,
             'total_harga_barang'  => $request->total_harga_barang,
             'user_id'             => $request->user_id,
-            'usernama'            => $request->usernama,
             'supplier_id'         => $request->supplier_id,
-            'supplier_nama'       => $request->supplier_nama,
             'bulan'               => $request->bulan,
             'tanggal'             => $request->tanggal,
             'tanggalAkhir'        => $request->tanggalAkhir,
@@ -90,23 +76,16 @@ class TransaksiController extends Controller
     {
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'barang_id'           => 'nullabel',
-            'barang_nama'         => 'nullabel',
-            'kategori_barang'     => 'nullabel',
-            'harga_barang'        => 'nullabel',
-            'stok_barang'         => 'nullabel',
-            'ukuran_barang'       => 'nullabel',
-            'jumlah_barang'       => 'nullabel',
-            'total_harga_barang'  => 'nullabel',
-            'user_id'             => 'nullabel',
-            'usernama'            => 'nullabel',
-            'supplier_id'         => 'nullabel',
-            'supplier_nama'       => 'nullabel',
-            'bulan'               => 'nullabel',
-            'tanggal'             => 'nullabel',
-            'tanggalAkhir'        => 'nullabel',
-            'status'              => 'nullabel',
-            'statusAkhir'         => 'nullabel',
+            'barang_id'           => 'required',
+            'jumlah_barang'       => 'required',
+            'total_harga_barang'  => 'required',
+            'user_id'             => 'required',
+            'supplier_id'         => 'required',
+            'bulan'               => 'required',
+            'tanggal'             => 'required',
+            'tanggalAkhir'        => 'required',
+            'status'              => 'required',
+            'statusAkhir'         => 'required'
         ]);
 
         //check if validation fails
@@ -119,14 +98,22 @@ class TransaksiController extends Controller
 
         // Check if transaction not found
         if (!$transaksi) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Data Transaksi Tidak Ditemukan!',
-            ], 404);
+            return new GudangResource(false, 'Data Transaksi Berhasil Diubah!', $transaksi);
         }
 
         // Update transaction
-        $transaksi->update($request->all());
+        $transaksi->update([
+            'barang_id'           => $request->barang_id,
+            'jumlah_barang'       => $request->jumlah_barang,
+            'total_harga_barang'  => $request->total_harga_barang,
+            'user_id'             => $request->user_id,
+            'supplier_id'         => $request->supplier_id,
+            'bulan'               => $request->bulan,
+            'tanggal'             => $request->tanggal,
+            'tanggalAkhir'        => $request->tanggalAkhir,
+            'status'              => $request->status,
+            'statusAkhir'         => $request->statusAkhir,
+        ]);
 
         // Return response
         return new GudangResource(true, 'Data Transaksi Berhasil Diuabh!', $transaksi);
