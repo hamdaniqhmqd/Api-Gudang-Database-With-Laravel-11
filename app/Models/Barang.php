@@ -18,7 +18,6 @@ class Barang extends Model
         'stok_barang',
         'ukuran_barang',
         'jumlah_barang',
-        'user_id',
         'supplier_id',
     ];
 }
