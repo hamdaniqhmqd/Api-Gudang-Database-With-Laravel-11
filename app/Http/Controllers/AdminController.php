@@ -41,6 +41,8 @@ class AdminController extends Controller
             'password' => 'required',
             'adminName' => 'required',
             'profileImagePath' => 'nullable|image',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
@@ -55,7 +57,9 @@ class AdminController extends Controller
             'username' => $request->username,
             'password' => $request->password,
             'adminName' => $request->adminName,
-            'profileImagePath' => $imageName
+            'profileImagePath' => $imageName,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         return new GudangResource(true, 'Data Admin Berhasil Ditambahkan!', $admin);
@@ -83,6 +87,8 @@ class AdminController extends Controller
             'password' => 'nullable',
             'adminName' => 'nullable',
             'profileImagePath' => 'nullable|image',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
@@ -106,12 +112,17 @@ class AdminController extends Controller
                 'password' => $request->password,
                 'adminName' => $request->adminName,
                 'profileImagePath' => $imageName,
+                'insert' => $request->insert,
+                'update' => $request->update,
             ]);
         } else {
             $admin->update([
                 'username' => $request->username,
                 'password' => $request->password,
                 'adminName' => $request->adminName,
+                'insert' => $request->insert,
+                'update' => $request->update,
+
             ]);
         }
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('stok_barang');
             $table->string('ukuran_barang');
             $table->unsignedBigInteger('supplier_id');
+            $table->boolean('insert')->nullable();
+            $table->boolean('update')->nullable();
             $table->timestamps();
         });
     }

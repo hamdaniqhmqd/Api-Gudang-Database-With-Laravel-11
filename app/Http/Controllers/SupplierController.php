@@ -28,6 +28,8 @@ class SupplierController extends Controller
             'nama_supplier' => 'required',
             'nik_supplier' => 'required',
             'no_hp_supplier' => 'required',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
@@ -38,6 +40,8 @@ class SupplierController extends Controller
             'nama_supplier' => $request->nama_supplier,
             'nik_supplier' => $request->nik_supplier,
             'no_hp_supplier' => $request->no_hp_supplier,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         return new GudangResource(true, 'Data Supplier Berhasil Ditambahkan!', $supplier);
@@ -77,6 +81,8 @@ class SupplierController extends Controller
             'nama_supplier' => 'required',
             'nik_supplier' => 'required',
             'no_hp_supplier' => 'required',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
@@ -87,6 +93,8 @@ class SupplierController extends Controller
             'nama_supplier' => $request->nama_supplier,
             'nik_supplier' => $request->nik_supplier,
             'no_hp_supplier' => $request->no_hp_supplier,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         return new GudangResource(true, 'Data Supplier Berhasil Diubah!', $supplier);

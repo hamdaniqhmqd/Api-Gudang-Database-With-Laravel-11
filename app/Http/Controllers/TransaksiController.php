@@ -45,7 +45,9 @@ class TransaksiController extends Controller
             'tanggal'             => 'required',
             'tanggalAkhir'        => 'required',
             'status'              => 'required',
-            'statusAkhir'         => 'nullable'
+            'statusAkhir'         => 'nullable',
+            'insert' => '',
+            'update' => '',
         ]);
 
 
@@ -66,6 +68,8 @@ class TransaksiController extends Controller
             'tanggalAkhir'        => $request->tanggalAkhir,
             'status'              => $request->status,
             'statusAkhir'         => $request->statusAkhir,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         //return response
@@ -85,7 +89,9 @@ class TransaksiController extends Controller
             'tanggal'             => 'required',
             'tanggalAkhir'        => 'required',
             'status'              => 'required',
-            'statusAkhir'         => 'required'
+            'statusAkhir'         => 'required',
+            'insert' => '',
+            'update' => '',
         ]);
 
         //check if validation fails
@@ -113,6 +119,8 @@ class TransaksiController extends Controller
             'tanggalAkhir'        => $request->tanggalAkhir,
             'status'              => $request->status,
             'statusAkhir'         => $request->statusAkhir,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         // Return response

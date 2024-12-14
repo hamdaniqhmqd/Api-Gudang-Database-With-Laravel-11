@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('tanggalAkhir');
             $table->integer('status');
             $table->integer('statusAkhir')->nullable();
+            $table->boolean('insert')->nullable();
+            $table->boolean('update')->nullable();
             $table->timestamps();
         });
     }

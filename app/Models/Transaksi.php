@@ -21,6 +21,8 @@ class Transaksi extends Model
         'tanggal',
         'tanggalAkhir',
         'status',
-        'statusAkhir'
+        'statusAkhir',
+        'insert',
+        'update'
     ];
 }
