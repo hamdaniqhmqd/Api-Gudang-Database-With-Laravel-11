@@ -15,5 +15,7 @@ class Supplier extends Model
         'nama_supplier',
         'nik_supplier',
         'no_hp_supplier',
+        'insert',
+        'update'
     ];
 }

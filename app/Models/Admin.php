@@ -14,6 +14,8 @@ class Admin extends Model
         'password',
         'adminName',
         'profileImagePath',
+        'insert',
+        'update'
     ];
 
     // protected $hidden = [

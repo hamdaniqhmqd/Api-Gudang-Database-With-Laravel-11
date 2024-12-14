@@ -32,6 +32,8 @@ class BarangController extends Controller
             'ukuran_barang' => 'required',
             'jumlah_barang' => 'required',
             'supplier_id' => 'required',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +48,8 @@ class BarangController extends Controller
             'ukuran_barang' => $request->ukuran_barang,
             'jumlah_barang' => $request->jumlah_barang,
             'supplier_id' => $request->supplier_id,
+            'insert' => $request->insert,
+            'update' => $request->update,
         ]);
 
         return new GudangResource(true, 'Data Barang Berhasil Ditambahkan!', $barang);
@@ -89,13 +93,25 @@ class BarangController extends Controller
             'ukuran_barang' => 'required',
             'jumlah_barang' => 'required',
             'supplier_id' => 'required',
+            'insert' => '',
+            'update' => '',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $admin->update($request->all());
+        $admin->update([
+            'barang_nama' => $request->barang_nama,
+            'kategori_barang' => $request->kategori_barang,
+            'harga_barang' => $request->harga_barang,
+            'stok_barang' => $request->stok_barang,
+            'ukuran_barang' => $request->ukuran_barang,
+            'jumlah_barang' => $request->jumlah_barang,
+            'supplier_id' => $request->supplier_id,
+            'insert' => $request->insert,
+            'update' => $request->update,
+        ]);
 
         return new GudangResource(true, 'Data Barang Berhasil Diubah!', $admin);
     }

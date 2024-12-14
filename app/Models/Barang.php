@@ -18,5 +18,7 @@ class Barang extends Model
         'stok_barang',
         'ukuran_barang',
         'supplier_id',
+        'insert',
+        'update'
     ];
 }

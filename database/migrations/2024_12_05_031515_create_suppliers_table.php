@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nama_supplier');
             $table->string('nik_supplier');
             $table->string('no_hp_supplier');
+            $table->boolean('insert')->nullable();
+            $table->boolean('update')->nullable();
             $table->timestamps();
         });
     }
